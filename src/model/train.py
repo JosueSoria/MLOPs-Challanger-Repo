@@ -3,6 +3,13 @@
 import argparse
 import glob
 import os
+import mlflow
+
+
+
+from pathlib import Path
+import numpy as np
+from sklearn.model_selection import train_test_split
 
 import pandas as pd
 
@@ -11,7 +18,8 @@ from sklearn.linear_model import LogisticRegression
 
 # define functions
 def main(args):
-    # TO DO: enable autologging
+     #TO DO: enable autologging
+    mlflow.autolog()
 
 
     # read data
@@ -24,7 +32,31 @@ def main(args):
     train_model(args.reg_rate, X_train, X_test, y_train, y_test)
 
 
+def split_data(df):
+    X, y = df[['Pregnancies','PlasmaGlucose','DiastolicBloodPressure','TricepsThickness','SerumInsulin','BMI','DiabetesPedigree','Age']].values, df['Diabetic'].values
+    len(X)
+    print(np.unique(y, return_counts=True))
+    return train_test_split(X, y, test_size=0.30, random_state=0)
+
+    
+
 def get_csvs_df(path):
+    #absolute_path = os.path.dirname(__file__)
+    #absolute_path = (os.path.dirname(os.path.abspath(__file__)))
+    #print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxxxxxxxxxxxx")
+    #filename = os.path.join(absolute_path, '../../')
+    #print ( filename)
+    #print (path)
+    #print(Path('../../experimentation/data/diabetes-dev.csv').exists())
+    #print (os.path.exists('../../experimentation/data/diabetes-dev.csv'))
+    #print (os.getcwd())
+    #relative_path = "experimentation/data"
+    #full_path = os.path.join(absolute_path, relative_path)
+    #print (full_path)
+    #print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxxxxxxxxxxxx")
+    #relative_path = "src/lib"
+    
+
     if not os.path.exists(path):
         raise RuntimeError(f"Cannot use non-existent path provided: {path}")
     csv_files = glob.glob(f"{path}/*.csv")
