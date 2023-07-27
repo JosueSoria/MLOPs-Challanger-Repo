@@ -22,9 +22,9 @@ def main(args):
 
 
 def split_data(df):
-    X, y = df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure', 
-            'TricepsThickness', 'SerumInsulin', 'BMI', 'DiabetesPedigree',
-            'Age']].values, df['Diabetic'].values
+    X, y = df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure',
+               'TricepsThickness', 'SerumInsulin', 'BMI', 'DiabetesPedigree',
+               'Age']].values, df['Diabetic'].values
     len(X)
     print(np.unique(y, return_counts=True))
     return train_test_split(X, y, test_size=0.30, random_state=0)
