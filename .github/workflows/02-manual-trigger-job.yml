@@ -16,5 +16,5 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: run job
-      run: src/job.yml
+      run: az ml job create --file src/job.yml --resource-group  rg-testmlops00006-prodml  -w mlw-testmlops00006-prodml 
       
