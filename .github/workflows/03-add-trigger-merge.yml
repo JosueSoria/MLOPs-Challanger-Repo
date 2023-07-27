@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Placeholder
-        run: |
+      run: |
           echo "Will add code checks here in next challenge"
